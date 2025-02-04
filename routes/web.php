@@ -1,13 +1,19 @@
 <?php
 
 use App\Http\Controllers\MessagesController;
-use App\Http\Controllers\EventController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\URL;
+use App\Http\Controllers\Application\PagesController;
+use App\Http\Controllers\Application\ArticlesController;
 
-
-Route::get('/current-url', function (){
-    return request()->fullUrl();
+Route::controller(PagesController::class)->group(function(){
+    Route::get('/', 'hello')->name('hello');
+    Route::get('/articles', 'articles')->name('articles');
+    Route::get('/articles/create','createArticle')->name('article.page.create');
+    Route::get('/articles/{article}','showArticle')->name('article');
+});
+Route::controller(ArticlesController::class)->group(function(){
+    Route::post('articles/create', 'create')->name('articles.create');
 });
 
 

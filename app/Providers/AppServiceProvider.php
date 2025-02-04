@@ -12,9 +12,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->singleton(MessagesStorageService::class, function ($app) {
-            return new MessagesStorageService();
-        });
+      
     }
 
     /**
