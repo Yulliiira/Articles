@@ -7,7 +7,8 @@
 
                 <div class="mb-3">
                     <label for="title" class="form-label">Title</label>
-                    <input type="text" name="title" value="{{old('title')}}" class="form-control @error('title') is-invalid @enderror" id="title">
+                    <input type="text" name="title" value="{{ old('title') }}"
+                        class="form-control @error('title') is-invalid @enderror" id="title">
                     @error('title')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -17,7 +18,7 @@
 
                 <div class="mb-3">
                     <label for="body" class="form-label">Body</label>
-                    <textarea name="body" class="form-control @error('body') is-invalid @enderror" id="body">{{old('body')}}</textarea>
+                    <textarea name="body" class="form-control @error('body') is-invalid @enderror" id="body">{{ old('body') }}</textarea>
                     @error('body')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -27,12 +28,19 @@
 
                 <div class="mb-3">
                     <label for="preview" class="form-label">Preview</label>
-                    <input class="form-control @error('preview') is-invalid @enderror" name="preview" type="file" id="preview">
+                    <input class="form-control @error('preview') is-invalid @enderror" name="preview" type="file"
+                        id="preview">
                     @error('preview')
                         <div class="invalid-feedback">
                             {{ $message }}
                         </div>
                     @enderror
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" name="is_public" type="checkbox" id="flexCheckDefault">
+                    <label class="form-check-label" for="is-public">
+                        Is public
+                    </label>
                 </div>
 
                 <button type="submit" class="btn btn-primary">Create</button>

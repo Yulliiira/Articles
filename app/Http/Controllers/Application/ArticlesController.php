@@ -3,30 +3,25 @@
 namespace App\Http\Controllers\Application;
 
 use App\Http\Controllers\Controller;
-use Dotenv\Parser\Value;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\Article\StoreRequest;
+use App\Models\Article;
 
 class ArticlesController extends Controller
 {
-   public function create(Request $request)
+   public function create(StoreRequest $request)
    {
-      $data = [
-         'string' => 'test',
-         'number' => '1,5'
-      ];
-      $validator = Validator::make($data, [
-         'string' => 'required|string|max:10',
-         'number' => 'required|int|max:50',
-      ]);
-      dd($validator->errors());
+      $previewImagePath = $request->file('preview')->store('article/previews', 'public');
 
-      $request->validate([
-         'title' =>'required|string|min:2|max:10',
-         'body' =>'required|string|min:5|max:100',
-         'preview' =>'required|image|mimes:png,jpg|max:800'
+      // Создаем объект статьи
+      $article = Article::create([
+         'title' => $request->input('title'),
+         'body' => $request->input('body'),
+         'is_public' => $request->has('is_public'),
+         'preview_image' => "/storage/$previewImagePath"
       ]);
 
-      // $request->file('preview')->store('article/previews');
+      // Редирект на страницу статьи
+      return redirect()->route('article', ['article' => $article->id]);
    }
+
 }
