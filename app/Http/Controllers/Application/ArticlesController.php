@@ -4,15 +4,20 @@ namespace App\Http\Controllers\Application;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Article\StoreRequest;
+use App\Http\Requests\Article\UpdateRequest;
 use App\Models\Article;
+use Illuminate\Http\RedirectResponse;
 
 class ArticlesController extends Controller
 {
-   public function create(StoreRequest $request)
+   public function create(StoreRequest $request) : RedirectResponse
    {
-      $previewImagePath = $request->file('preview')->store('article/previews', 'public');
+      if($request->hasFile('preview')){
+         $previewImagePath = $request->file('preview')->store('article/previews', 'public');
+      }else{
+         asset('storage/article/previews/default.png');
+      }
 
-      // Создаем объект статьи
       $article = Article::create([
          'title' => $request->input('title'),
          'body' => $request->input('body'),
@@ -20,7 +25,22 @@ class ArticlesController extends Controller
          'preview_image' => "/storage/$previewImagePath"
       ]);
 
-      // Редирект на страницу статьи
+      return redirect()->route('article', ['article' => $article->id]);
+   }
+   public function update(UpdateRequest $request, Article $article) : RedirectResponse
+   {
+      if ($request->hasFile('preview')) {
+         $previewImagePath = $request->file('preview')->store('article/previews', 'public');
+      } else {
+         asset('storage/article/previews/default.png');
+      }
+      $article->update([
+         'title' => $request->input('title'),
+         'body' => $request->input('body'),
+         'preview_image' => $previewImagePath ?? $article->preview_image,
+         'is_public' => $request->has('is_public'),
+      ]); 
+
       return redirect()->route('article', ['article' => $article->id]);
    }
 

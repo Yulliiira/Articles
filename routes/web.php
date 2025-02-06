@@ -11,9 +11,11 @@ Route::controller(PagesController::class)->group(function(){
     Route::get('/articles', 'articles')->name('articles');
     Route::get('/articles/create','createArticle')->name('article.page.create');
     Route::get('/articles/{article}','showArticle')->name('article');
+    Route::get('/articles/{article}/edit','updateArticle')->name('article.page.edit');
 });
 Route::controller(ArticlesController::class)->group(function(){
     Route::post('articles/create', 'create')->name('articles.create');
+    Route::post('articles/{article}/update', 'update')->name('articles.update');
 });
 
 

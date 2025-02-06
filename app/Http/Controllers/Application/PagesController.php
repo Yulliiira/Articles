@@ -30,4 +30,8 @@ class PagesController extends Controller
     {
         return view('pages.article_create');
     }
+    public function updateArticle(Article $article)
+    {
+        return view('pages.article_edit', compact('article'));
+    }
 }
