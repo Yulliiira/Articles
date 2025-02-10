@@ -17,14 +17,15 @@ class PagesController extends Controller
 
     public function articles()
     {
-       $articles = Article::where('is_public', true)->get();
+        
+        $articles = Article::where('is_public', true)->get();
 
-       return view('pages.articles', compact('articles'));
+        return view('pages.articles', compact('articles'));
     }
 
-    public function showArticle(Article $article , Comment $comment)
+    public function showArticle(Article $article, Comment $comment)
     {
-        return view('pages.article', compact('article' ));
+        return view('pages.article', compact('article'));
     }
 
     public function createArticle()
