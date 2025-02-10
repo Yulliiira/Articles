@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Application\PagesController;
 use App\Http\Controllers\Application\ArticlesController;
+use App\Http\Controllers\Application\CommentsController;
 
 Route::controller(PagesController::class)->group(function(){
     Route::get('/', 'hello')->name('hello');
@@ -16,7 +17,13 @@ Route::controller(PagesController::class)->group(function(){
 Route::controller(ArticlesController::class)->group(function(){
     Route::post('articles/create', 'create')->name('articles.create');
     Route::post('articles/{article}/update', 'update')->name('articles.update');
+    Route::post('articles/{article}/delete', 'delete')->name('articles.delete');
 });
+
+Route::controller(CommentsController::class)->group(function () {
+    Route::post('/articles/{article}/comments', 'store')->name('comments.store');
+});
+
 
 
 

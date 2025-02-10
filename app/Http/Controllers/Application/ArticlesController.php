@@ -12,17 +12,20 @@ class ArticlesController extends Controller
 {
    public function create(StoreRequest $request) : RedirectResponse
    {
-      if($request->hasFile('preview')){
+      if ($request->hasFile('preview')) {
          $previewImagePath = $request->file('preview')->store('article/previews', 'public');
-      }else{
-         asset('storage/article/previews/default.png');
+         $previewImagePath = "/storage/$previewImagePath";
+      } else {
+         // Указываем путь к изображению-заглушке
+         $previewImagePath = asset('storage/article/previews/default.png');
       }
+
 
       $article = Article::create([
          'title' => $request->input('title'),
          'body' => $request->input('body'),
          'is_public' => $request->has('is_public'),
-         'preview_image' => "/storage/$previewImagePath"
+         'preview_image' => $previewImagePath ? "/storage/$previewImagePath" : null
       ]);
 
       return redirect()->route('article', ['article' => $article->id]);
@@ -34,14 +37,21 @@ class ArticlesController extends Controller
       } else {
          asset('storage/article/previews/default.png');
       }
+
       $article->update([
          'title' => $request->input('title'),
          'body' => $request->input('body'),
          'preview_image' => $previewImagePath ?? $article->preview_image,
          'is_public' => $request->has('is_public'),
-      ]); 
+      ]);
 
       return redirect()->route('article', ['article' => $article->id]);
+   }
+   public function delete(Article $article) : RedirectResponse
+   {
+      $article->delete();
+      
+      return redirect()->route('articles');
    }
 
 }
