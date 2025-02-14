@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Application\PagesController;
 use App\Http\Controllers\Application\ArticlesController;
 use App\Http\Controllers\Application\CommentsController;
+use App\Http\Controllers\Application\RegisterController;
+use App\Http\Controllers\Application\LoginController;
 
 Route::controller(PagesController::class)->group(function(){
     Route::get('/', 'hello')->name('hello');
@@ -24,6 +26,14 @@ Route::controller(CommentsController::class)->group(function () {
     Route::post('/articles/{article}/comments', 'store')->name('comments.store');
 });
 
+Route::controller(RegisterController::class)->group(function(){
+    Route::get('/register', 'index')->name('register.form');
+    Route::post('/register', 'register')->name('register.action');
+});
 
+Route::controller(LoginController::class)->group(function(){
+    Route::get('/login', 'index')->name('login.form');
+    Route::post('/login', 'login')->name('login.action');
+});
 
 

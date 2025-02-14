@@ -18,10 +18,13 @@
                          <a class="nav-link" href="{{route('article.page.create')}}">Add article</a>
                      </li>
                  </ul>
-                 <form class="d-flex" role="search">
-                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                     <button class="btn btn-outline-success" type="submit">Search</button>
-                 </form>
+
+                    <div class="d-flex">
+                        <a href="{{route('login.form')}}" class="btn btn-outline-success m-lg-1">Login</a>
+                        <a href="{{route('register.form')}}" class="btn btn-outline-primary m-lg-1">Register</a>
+                        {{-- <button class="btn btn-outline-success" type="submit">Search</button> --}}
+                    </div>
+
              </div>
          </div>
      </nav>
