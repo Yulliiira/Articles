@@ -34,6 +34,7 @@ Route::controller(RegisterController::class)->group(function(){
 Route::controller(LoginController::class)->group(function(){
     Route::get('/login', 'index')->name('login.form');
     Route::post('/login', 'login')->name('login.action');
+    Route::post('/logout', 'logout')->name('logout');
 });
 
 

@@ -2,7 +2,7 @@
 @section('main')
     <div class="row mt-4">
         <div class="col-md-8"> <!-- Центрируем форму -->
-            <form action="{{ route('register.action') }}" method="POST" >
+            <form action="{{ route('register.action') }}" method="POST">
                 @csrf
 
                 <div class="mb-3">
@@ -39,7 +39,8 @@
                 </div>
                 <div class="mb-3">
                     <label for="password_confirmation" class="form-label">Password confirmation</label>
-                    <input type="password" name="password_confirmation" value="{{ old('password_confirmation') }}" class="form-control" id="password_confirmation">
+                    <input type="password" name="password_confirmation" value="{{ old('password_confirmation') }}"
+                        class="form-control" id="password_confirmation">
                 </div>
                 <button type="submit" class="btn btn-primary">Create accout</button>
             </form>

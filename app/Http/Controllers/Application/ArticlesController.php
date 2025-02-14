@@ -16,7 +16,6 @@ class ArticlesController extends Controller
          $previewImagePath = $request->file('preview')->store('article/previews', 'public');
          $previewImagePath = "/storage/$previewImagePath";
       } else {
-         // Указываем путь к изображению-заглушке
          $previewImagePath = asset('storage/article/previews/default.png');
       }
 
@@ -50,7 +49,7 @@ class ArticlesController extends Controller
    public function delete(Article $article) : RedirectResponse
    {
       $article->delete();
-      
+
       return redirect()->route('articles');
    }
 

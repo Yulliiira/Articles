@@ -25,6 +25,13 @@
                         </div>
                     @enderror
                 </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" name="remember_token" type="checkbox" id="flexCheckDefault">
+                    <label class="form-check-label" for="remember_token">
+                        Remember me
+                    </label>
+                </div>
                 <button type="submit" class="btn btn-success">Sign in</button>
             </form>
         </div>
