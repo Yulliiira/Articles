@@ -24,7 +24,7 @@ class Article extends Model
             set: fn ($value) => ucfirst($value),
         );
     }
-    
+
     public function comments()
     {
         return $this->hasMany(Comment::class);

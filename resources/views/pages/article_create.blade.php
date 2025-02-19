@@ -38,7 +38,7 @@
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" name="is_public" type="checkbox" id="flexCheckDefault">
-                    <label class="form-check-label" for="is-public">
+                    <label class="form-check-label mb-2" for="is-public">
                         Is public
                     </label>
                 </div>
