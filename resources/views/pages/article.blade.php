@@ -43,7 +43,7 @@
                     <label for="username" class="form-label">Your name</label>
                     <input type="text" class="form-control" id="username" name="username" required>
                 </div>
-                
+
                 <div class="mb-3">
                     <label for="body" class="form-label">Text</label>
                     <textarea class="form-control" id="body" name="body" rows="3" required></textarea>

@@ -14,14 +14,17 @@
                      <li class="nav-item">
                          <a class="nav-link" href="{{ route('articles') }}">Articles</a>
                      </li>
-                     <li class="nav-item">
-                         <a class="nav-link" href="{{ route('article.page.create') }}">Add article</a>
-                     </li>
+                     @if (auth()->check())
+                         <li class="nav-item">
+                             <a class="nav-link" href="{{ route('article.page.create') }}">Add article</a>
+                         </li>
+                     @endif
+
                  </ul>
 
                  <div class="d-flex">
                      @if (auth()->guest())
-                         <a href="{{ route('login.form') }}" class="btn btn-outline-success m-lg-1">Login</a>
+                         <a href="{{ route('login') }}" class="btn btn-outline-success m-lg-1">Login</a>
                          <a href="{{ route('register.form') }}" class="btn btn-outline-primary m-lg-1">Register</a>
                      @else
                          <a href="#" class="btn btn-outline-success m-lg-1">{{ auth()->user()->name }}
