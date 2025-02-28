@@ -12,6 +12,8 @@ class StoreRequest extends FormRequest
         return [
             'title' => 'required|string|min:2|max:20',
             'body' => 'required|string|min:5|max:100',
+            'prewiew' => 'image',
+            'is_public' => 'boolean'
         ];
     }
 }

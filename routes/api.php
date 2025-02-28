@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api\V1\ArticlesController;
+use App\Http\Controllers\Api\V1\CommentsController;
 use App\Http\Middleware\Article\IsPublicMiddleware;
 
 /*
@@ -21,7 +22,11 @@ use App\Http\Middleware\Article\IsPublicMiddleware;
 
 // Добавь свои маршруты API здесь
 
-Route::controller(ArticlesController::class)->group(function () {
-    Route::get('articles', 'list');
-    Route::get('articles/{article}', 'show')->middleware(IsPublicMiddleware::class);
+Route::controller(ArticlesController::class)->prefix('articles')->group(function () {
+    Route::get('/', 'list');
+    Route::get('/{article}', 'show')->middleware(IsPublicMiddleware::class);
+    Route::post('/', 'create');
+});
+Route::controller(CommentsController::class)->group(function () {
+    Route::post('/articles/{article}/comment', 'create');
 });

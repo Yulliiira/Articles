@@ -17,12 +17,18 @@ class IsPublicMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         /**
-         * @var Article $article  
+         * @var Article $article
          */
+        if(str_contains($request->route()->getPrefix(), 'api')){
+
+        }
 
         $article = $request->route('article');
 
         if(!$article->is_public){
+            if (str_contains($request->route()->getPrefix(), 'api')) {
+                return response()->json(['message' => 'no success'],400);
+            }
             return abort(403);
         }
 
