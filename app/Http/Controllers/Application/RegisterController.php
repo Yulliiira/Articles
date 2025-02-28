@@ -19,6 +19,6 @@ class RegisterController extends Controller
         $data = $request->validated();
         $data['password'] = Hash::make($data['password']);
         User::create($data);
-        return redirect()->route('login.form');
+        return redirect()->route('login');
     }
 }

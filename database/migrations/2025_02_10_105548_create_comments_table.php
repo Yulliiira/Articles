@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('article_id')->nullable();
             $table->string('username')->nullable();
-            $table->mediumText('body');
+            $table->mediumText('body')->nullable();
             $table->timestamps();
         });
     }
