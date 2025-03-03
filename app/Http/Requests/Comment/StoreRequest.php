@@ -3,7 +3,6 @@
 namespace App\Http\Requests\Comment;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Models\Comment;
 
 class StoreRequest extends FormRequest
 {

@@ -4,10 +4,8 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\Articles\StoreRequest;
+use App\Http\Requests\Api\Articles\UpdateRequest;
 use App\Models\Article;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
-
 
 class ArticlesController extends Controller
 {
@@ -62,5 +60,11 @@ class ArticlesController extends Controller
             'preview_image' => $previewImagePath ? "/storage/$previewImagePath" : null
         ]);
         return response()->json($this->show($article), 201);
+    }
+
+    public function update(UpdateRequest $request, Article $article)
+    {
+        $article->update($request->validated());
+        return response()->json($this->show($article));
     }
 }

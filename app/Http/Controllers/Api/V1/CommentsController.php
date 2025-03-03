@@ -10,6 +10,9 @@ class CommentsController extends Controller
 {
     public function create(StoreRequest $request, Article $article)
     {
+        if (!$article->is_public) {
+            return response()->json(['error' => 'Комментарии к этой статье запрещены'], 400);
+        }
         return $article->comments()->create($request->validated());
     }
 }
