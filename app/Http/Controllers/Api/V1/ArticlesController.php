@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Api\Articles\StoreRequest;
-use App\Http\Requests\Api\Articles\UpdateRequest;
+use App\Http\Requests\Api\Articles\StoreArticleRequest;
+use App\Http\Requests\Api\Articles\UpdateArticleRequest;
 use App\Models\Article;
 
 class ArticlesController extends Controller
 {
-    public function list()
+    public function index()
     {
         $articles = Article::query()->where('is_public', true)->get();
         $data = [];
@@ -25,26 +25,7 @@ class ArticlesController extends Controller
         return $data;
     }
 
-    public function show(Article $article)
-    {
-        return [
-            'id' => $article->id,
-            'title' => $article->title,
-            'body' => $article->body,
-            'image' => $article->image,
-            'date' => $article->date,
-            'comments' => $article->comments->map(function ($comment) {
-                return [
-                    'user' => $comment->username,
-                    'body' => $comment->body,
-                ];
-            }),
-        ];
-
-        // return $article;
-    }
-
-    public function create(StoreRequest $request)
+    public function store(StoreArticleRequest $request)
     {
         if ($request->hasFile('preview_image')) {
             $previewImagePath = $request->file('preview_image')->store('article/previews', 'public');
@@ -62,13 +43,32 @@ class ArticlesController extends Controller
         return response()->json($this->show($article), 201);
     }
 
-    public function update(UpdateRequest $request, Article $article)
+    public function show(Article $article)
+    {
+        
+        return [
+            'id' => $article->id,
+            'title' => $article->title,
+            'body' => $article->body,
+            'image' => $article->image,
+            'date' => $article->date,
+            'comments' => $article->comments->map(function ($comment) {
+                return [
+                    'user' => $comment->username,
+                    'body' => $comment->body,
+                ];
+            }),
+        ];
+    }
+
+    public function update(UpdateArticleRequest $request, Article $article)
     {
         $article->update($request->validated());
         return response()->json($this->show($article));
     }
 
-    public function delete(Article $article)
+
+    public function destroy(Article $article)
     {
         return [
             'status' => $article->delete()

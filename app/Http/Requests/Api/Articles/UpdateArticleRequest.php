@@ -2,15 +2,12 @@
 
 namespace App\Http\Requests\Api\Articles;
 
+
 use App\Http\Requests\Api\ApiRequest;
 
-class UpdateRequest extends ApiRequest
+class UpdateArticleRequest extends ApiRequest
 {
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
-     */
+
     public function rules(): array
     {
         return [
@@ -21,4 +18,3 @@ class UpdateRequest extends ApiRequest
         ];
     }
 }
- 
