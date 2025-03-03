@@ -67,4 +67,11 @@ class ArticlesController extends Controller
         $article->update($request->validated());
         return response()->json($this->show($article));
     }
+
+    public function delete(Article $article)
+    {
+        return [
+            'status' => $article->delete()
+        ];
+    }
 }

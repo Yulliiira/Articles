@@ -22,6 +22,7 @@ Route::controller(ArticlesController::class)->prefix('articles')->group(function
     Route::get('/{article}', 'show')->middleware(IsPublicMiddleware::class);
     Route::post('/', 'create');
     Route::patch('/{article}', 'update');
+    Route::delete('/{article}', 'delete');
 });
 Route::controller(CommentsController::class)->group(function () {
     Route::post('/articles/{article}/comment', 'create');
