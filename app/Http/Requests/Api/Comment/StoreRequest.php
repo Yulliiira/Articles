@@ -2,9 +2,9 @@
 
 namespace App\Http\Requests\Api\Comment;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\Api\ApiRequest;
 
-class StoreRequest extends FormRequest
+class StoreRequest extends ApiRequest
 {
     /**
      * Get the validation rules that apply to the request.
