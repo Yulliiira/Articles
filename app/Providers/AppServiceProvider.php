@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Http\Resources\Article\MinifiedArticleResource;
 use Illuminate\Support\ServiceProvider;
 use App\Providers\Services\MessagesStorageService;
 
@@ -12,7 +13,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-      
+
     }
 
     /**
@@ -20,6 +21,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-
+        MinifiedArticleResource::withoutWrapping();
     }
 }
