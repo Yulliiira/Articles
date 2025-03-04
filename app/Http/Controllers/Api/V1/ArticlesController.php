@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api\V1;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\Articles\StoreArticleRequest;
 use App\Http\Requests\Api\Articles\UpdateArticleRequest;
+use App\Http\Resources\Article\ArticleResource;
+use App\Http\Resources\Article\MinifiedArticleResource;
 use App\Models\Article;
 
 class ArticlesController extends Controller
@@ -12,17 +14,7 @@ class ArticlesController extends Controller
     public function index()
     {
         $articles = Article::query()->where('is_public', true)->get();
-        $data = [];
-
-        foreach ($articles as $article) {
-            $data[] = [
-                'id' => $article->id,
-                'title' => $article->title,
-                'body' => $article->body,
-                'preview_image' => $article->preview_image,
-            ];
-        }
-        return $data;
+        return MinifiedArticleResource::collection($articles);
     }
 
     public function store(StoreArticleRequest $request)
@@ -45,20 +37,7 @@ class ArticlesController extends Controller
 
     public function show(Article $article)
     {
-        
-        return [
-            'id' => $article->id,
-            'title' => $article->title,
-            'body' => $article->body,
-            'image' => $article->image,
-            'date' => $article->date,
-            'comments' => $article->comments->map(function ($comment) {
-                return [
-                    'user' => $comment->username,
-                    'body' => $comment->body,
-                ];
-            }),
-        ];
+        return new ArticleResource($article);
     }
 
     public function update(UpdateArticleRequest $request, Article $article)
