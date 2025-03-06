@@ -7,6 +7,7 @@ use App\Http\Requests\Api\Articles\StoreArticleRequest;
 use App\Http\Requests\Api\Articles\UpdateArticleRequest;
 use App\Http\Resources\Article\ArticleResource;
 use App\Http\Resources\Article\MinifiedArticleResource;
+use App\Http\Middleware\TokenAuthMiddleware;
 use App\Models\Article;
 
 class ArticlesController extends Controller

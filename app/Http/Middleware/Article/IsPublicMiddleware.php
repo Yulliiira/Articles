@@ -19,10 +19,10 @@ class IsPublicMiddleware
         if (!$article) {
             return $next($request);
         }
-        
-        if(!$article->is_public){
+
+        if (!$article->is_public) {
             if (str_contains($request->route()->getPrefix(), 'api')) {
-                return response()->json(['message' => 'no success'],400);
+                return response()->json(['message' => 'no success'], 400);
             }
             return abort(403);
         }

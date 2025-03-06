@@ -17,9 +17,7 @@ class PagesController extends Controller
 
     public function articles()
     {
-        
         $articles = Article::where('is_public', true)->get();
-
         return view('pages.articles', compact('articles'));
     }
 
