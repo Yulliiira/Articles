@@ -10,7 +10,7 @@ use Illuminate\Http\RedirectResponse;
 
 class ArticlesController extends Controller
 {
-   public function create(StoreRequest $request) : RedirectResponse
+   public function create(StoreRequest $request): RedirectResponse
    {
       if ($request->hasFile('preview')) {
          $previewImagePath = $request->file('preview')->store('article/previews', 'public');
@@ -29,7 +29,7 @@ class ArticlesController extends Controller
 
       return redirect()->route('article', ['article' => $article->id]);
    }
-   public function update(UpdateRequest $request, Article $article) : RedirectResponse
+   public function update(UpdateRequest $request, Article $article): RedirectResponse
    {
       if ($request->hasFile('preview')) {
          $previewImagePath = $request->file('preview')->store('article/previews', 'public');
@@ -46,11 +46,10 @@ class ArticlesController extends Controller
 
       return redirect()->route('article', ['article' => $article->id]);
    }
-   public function delete(Article $article) : RedirectResponse
+   public function delete(Article $article): RedirectResponse
    {
       $article->delete();
 
       return redirect()->route('articles');
    }
-
 }
