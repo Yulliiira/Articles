@@ -3,7 +3,6 @@
 namespace App\Http\Requests\Api\Comment;
 
 use App\Http\Requests\Api\ApiRequest;
-
 class StoreRequest extends ApiRequest
 {
     public function rules(): array

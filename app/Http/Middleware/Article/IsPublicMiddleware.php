@@ -6,7 +6,6 @@ use App\Models\Article;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
-
 class IsPublicMiddleware
 {
     public function handle(Request $request, Closure $next): Response

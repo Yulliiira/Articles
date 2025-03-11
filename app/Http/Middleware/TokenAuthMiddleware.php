@@ -7,8 +7,6 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Auth;
-
-
 class TokenAuthMiddleware
 {
     public function handle(Request $request, Closure $next): Response
@@ -24,7 +22,7 @@ class TokenAuthMiddleware
         }
 
         Auth::setUser($token->user);
-        
+
         return $next($request);
     }
 }
