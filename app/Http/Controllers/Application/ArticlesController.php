@@ -19,7 +19,6 @@ class ArticlesController extends Controller
          $previewImagePath = asset('storage/article/previews/default.png');
       }
 
-
       $article = Article::create([
          'title' => $request->input('title'),
          'body' => $request->input('body'),
@@ -29,6 +28,7 @@ class ArticlesController extends Controller
 
       return redirect()->route('article', ['article' => $article->id]);
    }
+
    public function update(UpdateRequest $request, Article $article): RedirectResponse
    {
       if ($request->hasFile('preview')) {
@@ -46,6 +46,7 @@ class ArticlesController extends Controller
 
       return redirect()->route('article', ['article' => $article->id]);
    }
+
    public function delete(Article $article): RedirectResponse
    {
       $article->delete();

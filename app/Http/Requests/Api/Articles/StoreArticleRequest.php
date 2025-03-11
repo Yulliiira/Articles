@@ -2,9 +2,7 @@
 
 namespace App\Http\Requests\Api\Articles;
 
-
 use App\Http\Requests\Api\ApiRequest;
-
 class StoreArticleRequest extends ApiRequest
 {
     public function rules(): array

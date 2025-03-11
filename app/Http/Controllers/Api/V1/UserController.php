@@ -4,10 +4,7 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\User\LoginRequest;
-use App\Models\Token;
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
-
 class UserController extends Controller
 {
     public function login(LoginRequest $request)

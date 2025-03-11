@@ -5,8 +5,6 @@ namespace App\Http\Resources\Article;
 use App\Http\Resources\Comment\CommentResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
-use App\Models\Article;
-
 class ArticleResource extends JsonResource
 {
     public function toArray(Request $request): array

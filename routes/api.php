@@ -6,11 +6,6 @@ use App\Http\Controllers\Api\V1\CommentsController;
 use App\Http\Controllers\Api\V1\UploadsController;
 use App\Http\Controllers\Api\V1\UserController;
 use App\Http\Middleware\Article\IsPublicMiddleware;
-use Illuminate\Http\Request;
-
-// Route::middleware('auth:sanctum')->get('user', function (Request $request) {
-//     return $request->user();
-// });
 
 Route::apiResource('articles', ArticlesController::class)
     ->middleware([IsPublicMiddleware::class, 'auth:sanctum']);
