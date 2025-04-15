@@ -43,3 +43,9 @@ Route::controller(LoginController::class)->middleware('guest')->group(function (
     Route::post('/login', 'login')->name('login.action');
     Route::post('/logout', 'logout')->name('logout')->withoutMiddleware('guest');
 });
+
+\Filament\Facades\Filament::serving(function () {
+    \Filament\Facades\Filament::registerPanel(
+        \Filament\Panel::make()
+    );
+});
